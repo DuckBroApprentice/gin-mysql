@@ -27,12 +27,12 @@ func (u *User) Add() (int64, error) {
 func (u *User) Get() (User, error) {
 	user := User{}
 	log.Println(db.B)
-	err := db.MySq.Ping()
-	if err != nil {
-		log.Println("Get PONG")
-	}
-	row := db.MySq.QueryRow("SELECT id,username,user_pwd FROM users WHERE id = ?", u.Id)
-	err = row.Scan(&user.Id, &user.Username, &user.UserPwd)
+	// err := db.MySq.Ping()
+	// if err != nil {
+	// 	log.Println("Get PONG")
+	// } 除錯中.......
+	row := db.MySq.QueryRow("SELECT id,username,user_pwd FROM users WHERE id = ?", u.Id) //除錯中.....
+	err := row.Scan(&user.Id, &user.Username, &user.UserPwd)
 	if err != nil {
 		return User{}, err
 	}
